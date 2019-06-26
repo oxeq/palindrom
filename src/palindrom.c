@@ -4,11 +4,13 @@
 #include <string.h>
 #include <ctype.h>
 
-int quantity(char *name, int length){
+int check(char *name, char *array, int length){
 	char c;
+	int i = 0;
 	FILE *fp;
 	fp = fopen(name, "r");
 	while ((c =fgetc(fp)) != EOF){
+		array[i++] = c;
 		length++;
 	 } 
 	fclose(fp);
@@ -16,18 +18,6 @@ int quantity(char *name, int length){
 		return 0;
 	}
 	return length;
-}
-
-void check(char *name, char *array, int length){
-	char c;
-	int i = 0;
-	FILE *fp;
-	fp = fopen(name, "r");
-	for(i=0;i<=length;i++){
-	    c =fgetc(fp);
-		array[i++] = c;
-	 } 
-	fclose(fp);
 }
 
 void registr(char *array, int length){
@@ -43,12 +33,10 @@ void registr(char *array, int length){
 
 int test(char *array, int length){
 	int leftIndex = 0;
-	int rightIndex = length;
+	int rightIndex = length-1;
 	while(leftIndex < rightIndex){
-		if(array[leftIndex++]!=array[rightIndex])
+		if(array[leftIndex++]!=array[rightIndex--])
 			return 1;
 	}
 	return 0;
 }
-	
-

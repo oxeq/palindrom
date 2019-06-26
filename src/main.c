@@ -5,7 +5,8 @@
 
 int main(int argc, char **argv)
 {	
-	int length = 0;
+	char array[n];
+	int length=0;
 	int palindrom = 0;
 	if(argc<2){ // Проверка на вход аргумента 
 		printf("Usage: ./palindrom <filename>\n");
@@ -18,13 +19,11 @@ int main(int argc, char **argv)
 		return 1;
 	} 
 	fclose(fp);
-	length = quantity(argv[1], length);
+	length = check(argv[1], array, length);
 	if(length == 0){
 			printf("Error, file is empty");
 			return 1;
 		} 
-	char array[length];
-	check(argv[1], array, length);
 	printf("---------------------------------------------------------\n");
     printf("| Hello, this is a palindrome text verification program |\n");
     printf("---------------------------------------------------------\n");
@@ -33,8 +32,8 @@ int main(int argc, char **argv)
 	registr(array, length); // Приводим буквы к нижнему регистру
 	palindrom = test(array,length); // Проверка текста на палиндром
 	if(palindrom == 0)
-		printf("It is palindrom");
+		printf("This text is palindrome!\n");
 	else 
-		printf("It is not palindrom");
+		printf("this text is not palindrome\n");
 	return 0;
 }
